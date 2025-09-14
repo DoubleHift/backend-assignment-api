@@ -1,0 +1,20 @@
+services:
+  backend-api:
+    build: .
+    image: proksi-backend-api
+    container_name: proksi-backend-container
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+
+  alembic-runner:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    # Bu servisin ana komutu 'alembic' olarak ayarlandı.
+    entrypoint: ["alembic"]
